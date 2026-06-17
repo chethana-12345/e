@@ -1,0 +1,40 @@
+Ubuntu
+
+sudo adduser chethana
+password:123
+ssh keygen
+sudo apt update
+sudo apt install ansiable -y
+ansible --version
+vi inventory.ini
+{
+localhost ansible_connection=local
+}
+:wq
+ansible -inventory -i inventory.ini --list
+ansible all -i inventory.ini -m ping
+nano basic-playbook.yml
+{
+--
+-name:my first playbook
+ hosts:localhost
+ tasks:
+ -name:print a message
+  debug:
+  msg:"hello"
+  }
+  ansible-playbook -i inventory.init basic-playbook.yml
+   nano basic-playbook.yml
+  {
+--
+-name:create a directory
+ hosts:localhost
+ gather-facts:false
+ tasks:
+  -name:create the 'my_test_directory'
+   ansible.builtin.file:
+    path:/tmp/my_test_directory
+    state:directory
+   
+  }
+ls/tmp
